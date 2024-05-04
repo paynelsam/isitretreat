@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Is it Retreat?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 10%;
+            font-size: 150px;
+        }
+		.content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+        }
+        #countdown {
+            position: absolute;
+            top: 150%; /* Position the countdown below the screen height */
+            width: 100%;
+            text-align: center;
+            font-size: 24px;
+            padding: 20px 0;
+            background: #f8f8f8;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <div id="answer"></div>
+    <div id="countdown"></div>
+    <script>
+        function checkDate() {
+            const today = new Date();
+            const month = today.getMonth();
+            const date = today.getDate();
+
+            if (month === 6 && (date === 12 || date === 13 || date === 14)) {
+                document.getElementById('answer').innerText = "YES";
+            } else {
+                document.getElementById('answer').innerText = "NO";
+                startCountdown();
+            }
+        }
+
+        function startCountdown() {
+            const targetDate = new Date('July 12, 2024 00:00:00');
+            const countdown = document.getElementById('countdown');
+            const timer = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = targetDate - now;
+
+                // Time calculations for days, hours, minutes and seconds
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdown.innerText = days + "d " + hours + "h "
+                + minutes + "m " + seconds + "s ";
+
+                // If the count down is over, stop the timer
+                if (distance < 0) {
+                    clearInterval(timer);
+                    countdown.innerText = "The countdown has ended.";
+                }
+            }, 1000);
+        }
+
+        checkDate();
+    </script>
+</body>
+</html>
