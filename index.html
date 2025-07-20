@@ -39,7 +39,7 @@
             const month = today.getMonth();
             const date = today.getDate();
 
-            if (month === 6 && (date === 12 || date === 13 || date === 14)) {
+            if (month === 7 && (date === 15 || date === 16 || date === 17)) {
                 document.getElementById('answer').innerText = "YES";
             } else {
                 document.getElementById('answer').innerText = "NO";
@@ -48,7 +48,7 @@
         }
 
         function startCountdown() {
-            const targetDate = new Date('July 12, 2024 00:00:00');
+            const targetDate = new Date('August 15, 2025 00:00:00');
             const countdown = document.getElementById('countdown');
             const timer = setInterval(function() {
                 const now = new Date().getTime();
